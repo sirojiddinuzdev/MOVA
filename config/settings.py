@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9*=*)d*i#q-mypemd%)1#3@k)=nicic=_#7216)(vu#@rp20t!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -65,7 +65,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mova_project.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -82,8 +82,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mova_project.wsgi.application'
-ASGI_APPLICATION = 'mova_project.asgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = 'config.asgi.application'
 
 AUTH_USER_MODEL = 'authentication.User'
 
