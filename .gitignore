@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 venv/
 __pycache__/
 *.pyc
 .env
 db.sqlite3
-=======
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -225,4 +223,3 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
->>>>>>> 7a8cec7392b1f10fa1561e5c5d542fc6469efde9
