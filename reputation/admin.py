@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import ScoreMetric
 
-# Register your models here.
+@admin.register(ScoreMetric)
+class ScoreMetricAdmin(admin.ModelAdmin):
+    list_display = ('profile', 'calculate_total_score')
