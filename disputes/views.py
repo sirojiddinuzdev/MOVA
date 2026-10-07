@@ -16,6 +16,10 @@ class DisputeViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, IsParticipantOrReadOnly]
 
     def perform_create(self, serializer):
+        deal = serializer.validated_data.get('deal')
+        if deal.client != self.request.user and deal.freelancer != self.request.user:
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied("You must be a participant of this deal to open a dispute.")
         serializer.save(opened_by=self.request.user)
 
 class DisputeEvidenceViewSet(viewsets.ModelViewSet):
@@ -25,6 +29,10 @@ class DisputeEvidenceViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         dispute = get_object_or_404(Dispute, pk=self.kwargs.get('dispute_pk'))
+        deal = dispute.deal
+        if deal.client != self.request.user and deal.freelancer != self.request.user:
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied("You must be a participant of this dispute to submit evidence.")
         serializer.save(submitted_by=self.request.user, dispute=dispute)
 
     def get_queryset(self):

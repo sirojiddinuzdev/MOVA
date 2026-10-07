@@ -5,4 +5,4 @@ class DealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deal
         fields = '__all__'
-        read_only_fields = ('client', 'status')
+        read_only_fields = ('client', 'status', 'payment_status')

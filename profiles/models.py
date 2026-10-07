@@ -84,3 +84,21 @@ class Media(models.Model):
 
     def __str__(self):
         return f"{self.media_type} for {self.profile.full_name}"
+
+class ProfileClaimRequest(models.Model):
+    STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    )
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='claim_requests')
+    requester = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    method = models.CharField(max_length=255, blank=True)
+    reason = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Claim by {self.requester.username} for {self.profile.full_name} ({self.status})"
+

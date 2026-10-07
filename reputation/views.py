@@ -8,7 +8,7 @@ class IsProfileOwnerOrReadOnly(permissions.BasePermission):
             return True
         return obj.profile.user == request.user
 
-class ScoreMetricViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.UpdateModelMixin):
+class ScoreMetricViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
     queryset = ScoreMetric.objects.all()
     serializer_class = ScoreMetricSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsProfileOwnerOrReadOnly]

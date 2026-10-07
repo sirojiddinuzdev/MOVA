@@ -7,4 +7,4 @@ class ScoreMetricSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScoreMetric
         fields = '__all__'
-        read_only_fields = ('profile',)
+        read_only_fields = ('profile', 'audience_score', 'endorsement_score', 'activity_score', 'media_score')
